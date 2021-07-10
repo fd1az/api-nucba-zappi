@@ -1,4 +1,4 @@
-import { Category } from '../core/entities/category';
+import { CategoryDto } from '../core/dto/CategoryDto';
 import CategoryRepository from '../core/respositories/category.repository';
 import { Result } from '../core/types/response';
 import prisma from '../config/db';
@@ -6,9 +6,13 @@ import { BadRequestError } from '../errors/bad-request-error';
 import { ServerError } from '../errors/server-error';
 
 export default class CategoryDataSource implements CategoryRepository {
-  public async getCategory(): Promise<Result<Category[]>> {
+  public async getCategory(): Promise<Result<CategoryDto[]>> {
     try {
-      const categories = await prisma.category.findMany();
+      const categories = await prisma.category.findMany({
+        include: {
+          products: true,
+        },
+      });
 
       return { success: true, result: categories };
     } catch (error) {
@@ -16,10 +20,17 @@ export default class CategoryDataSource implements CategoryRepository {
       return { success: false, err };
     }
   }
-  public async createCategory(categoryName: string): Promise<Result<Category>> {
+  public async createCategory(
+    categoryName: string
+  ): Promise<Result<CategoryDto>> {
     try {
       const category = await prisma.category.create({
-        data: { category: categoryName },
+        data: {
+          category: categoryName,
+        },
+        include: {
+          products: true,
+        },
       });
       return { success: true, result: category };
     } catch (error) {
