@@ -13,11 +13,12 @@ export const signin = async (
   if (!errors.isEmpty()) {
     return next(new RequestValidationError(errors.array()));
   }
-  const { name, email, password } = req.body;
+  const { name, email, password, roleId } = req.body;
   const signinResponse = await interactors.SignInAuthIteractor({
     name,
     email,
     password,
+    roleId: Number(roleId),
   });
 
   res.status(200).json({
@@ -35,7 +36,7 @@ export const login = async (
   if (!errors.isEmpty()) {
     return next(new RequestValidationError(errors.array()));
   }
-  const { email, password } = req.body;
+  const { email, password, roleId } = req.body;
   const loginResponse = await interactors.LoginAuthIteractor({
     email,
     password,

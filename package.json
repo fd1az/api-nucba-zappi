@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn ./src/server",
-    "migrate": "prisma migrate dev"
+    "migrate": "prisma migrate dev",
+    "generate": "prisma generate",
+    "seed": "prisma db seed --preview-feature",
+    "studio": "prisma studio"
   },
   "repository": {
     "type": "git",
