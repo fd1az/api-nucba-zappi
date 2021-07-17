@@ -7,8 +7,10 @@ export const validateRequest = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log('RUN');
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return next(new RequestValidationError(errors.array()));
   }
+  next();
 };

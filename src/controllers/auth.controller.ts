@@ -1,14 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import interactors from '../core/interactors';
-import { validationResult } from 'express-validator';
-import { RequestValidationError } from '../errors/request-validation-error';
-import { NotFoundError } from '../errors/not-found-error';
 
 export const signin = async (
   req: Request,
   res: Response,
   next: NextFunction
 ) => {
+  console.log('Entro al controlador');
   const { name, email, password, roleId } = req.body;
   const signinResponse = await interactors.SignInAuthIteractor({
     name,

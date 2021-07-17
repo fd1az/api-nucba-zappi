@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { nextTick } from 'process';
+
 import interactors from '../core/interactors';
 
 export const getCategory = async (

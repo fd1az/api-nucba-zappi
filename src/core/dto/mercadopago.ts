@@ -19,5 +19,6 @@ export interface MercadoPagoResponse {
 
 export interface MercadoPagoPaymentRequest {
   items: PaymentItem[];
-  external_reference: string; //ID DE NUESTRA ORDEN
+  external_reference: string;
+  shipmentCost: number; //ID DE NUESTRA ORDEN
 }
