@@ -16,9 +16,9 @@ router.post(
   body('subtotal').isNumeric().notEmpty(),
   body('total').isNumeric().notEmpty(),
   validateRequest,
-
   protect,
   createOrder
 );
+//verbo GET -> controller (getOrder)
 
 export default router;
