@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node dist/server.js",
+    "build": "tsc --build tsconfig.json",
+    "postinstall": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "ts-node-dev --respawn ./src/server",
     "migrate": "prisma migrate dev",
     "generate": "prisma generate",
     "seed": "prisma db seed --preview-feature",
     "studio": "prisma studio",
-    "build": "tsc --build tsconfig.json",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "repository": {
